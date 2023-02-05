@@ -73,7 +73,7 @@ function displayWeather(data) {
         console.log(data)
         weatherLocationName.innerHTML = data.name
         temperature.innerHTML = rounded + "°" + "c"
-        feelsLike.innerHTML = "Feels like" + " " + Math.floor(data.main.feels_like) + "°" + "c"
+        feelsLike.innerHTML = "Feels like" + " "  + Math.floor(data.main.feels_like) + "°" + "c"
         clouds.innerHTML =   data.weather[0].description
         humidity.textContent = "Humidity" + " " +  data.main.humidity + "%"
 
