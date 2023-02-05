@@ -6,12 +6,7 @@ const temperature = document.querySelector(".temperature")
 const feelsLike = document.querySelector(".feels-like")
 const clouds = document.querySelector(".clouds")
 const humidity = document.querySelector(".humidity")
-const sunrise = document.querySelector(".sunrise")
-const sunset = document.querySelector(".sunset")
 
-
-
-//////////////////////////
 
 const findPlace = () => {
     const status = document.querySelector('.status')
@@ -65,6 +60,7 @@ function fetchWeatherData(){
 
 function displayDefaultWeather(data) {
  const defaultPlace = data[0].state
+
 fetch(`https://api.openweathermap.org/data/2.5/weather?q=${defaultPlace}&units=metric&appid=1977debf2877a0be6ba449dd01ada2ce`
     ).then((response) => response.json())
     .then((data) => displayWeather(data))
@@ -83,7 +79,4 @@ function displayWeather(data) {
         humidity.textContent = data.main.humidity + "%"
     }
    
-    
-   // sunrise.textContent = data.main.sunrise
-    //sunset.textContent = data.main.sunset
 }
