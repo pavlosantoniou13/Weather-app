@@ -15,13 +15,10 @@ const findPlace = () => {
 
 
     const success = (position) => {
-        console.log(position)
         const latitude = position.coords
         .latitude
         const longitude = position.coords
         .longitude
-
-        console.log(longitude + " " + latitude)
         fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&appid=1977debf2877a0be6ba449dd01ada2ce`
             ).then((response) => response.json())
             .then((data) => displayDefaultWeather(data))
@@ -59,9 +56,10 @@ function fetchWeatherData(){
 
 
 function displayDefaultWeather(data) {
+    console.log(data)
  const defaultPlace = data[0].state
 
-fetch(`https://api.openweathermap.org/data/2.5/weather?q=${defaultPlace}&units=metric&appid=1977debf2877a0be6ba449dd01ada2ce`
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${defaultPlace}&units=metric&appid=1977debf2877a0be6ba449dd01ada2ce`
     ).then((response) => response.json())
     .then((data) => displayWeather(data))
 }
@@ -71,12 +69,16 @@ function displayWeather(data) {
     if(data.name == undefined) {
         console.log("try again")
     } else {
+        const rounded = Math.floor(data.main.temp)
         console.log(data)
         weatherLocationName.innerHTML = data.name
-        temperature.innerHTML = data.main.temp + "°" + "c"
-        feelsLike.innerHTML = data.main.feels_like
-        clouds.textContent = data.weather.description 
-        humidity.textContent = data.main.humidity + "%"
+        temperature.innerHTML = rounded + "°" + "c"
+        feelsLike.innerHTML = "Feels like" + " " + Math.floor(data.main.feels_like) + "°" + "c"
+        clouds.innerHTML =   data.weather[0].description
+        humidity.textContent = "Humidity" + " " +  data.main.humidity + "%"
+
+        
+       
     }
    
 }
