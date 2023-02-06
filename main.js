@@ -22,7 +22,7 @@ const findPlace = () => {
         fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&appid=1977debf2877a0be6ba449dd01ada2ce`
             ).then((response) => response.json())
             .then((data) => displayDefaultWeather(data))
-
+        
     }
 
     const error = () => {
@@ -57,7 +57,8 @@ function fetchWeatherData(){
 
 function displayDefaultWeather(data) {
     console.log(data)
- const defaultPlace = data[0].state
+    const defaultPlace = data[0].name 
+    
 
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${defaultPlace}&units=metric&appid=1977debf2877a0be6ba449dd01ada2ce`
     ).then((response) => response.json())
@@ -71,7 +72,7 @@ function displayWeather(data) {
     } else {
         const rounded = Math.floor(data.main.temp)
         console.log(data)
-        weatherLocationName.innerHTML = data.name
+        weatherLocationName.innerHTML = data.name + "," + data.sys.country
         temperature.innerHTML = rounded + "°" + "c"
         feelsLike.innerHTML = "Feels like" + " "  + Math.floor(data.main.feels_like) + "°" + "c"
         clouds.innerHTML =   data.weather[0].description
