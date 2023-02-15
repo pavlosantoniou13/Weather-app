@@ -9,7 +9,7 @@ const humidity = document.querySelector(".humidity")
 
 
 const findPlace = () => {
-    const status = document.querySelector('.status')
+    
 
    
 
@@ -54,10 +54,15 @@ function fetchWeatherData(){
     
 }
 
+const stateConverter = (words) => {
+  return  words.split(" ").pop();
+    
+}
+
 
 function displayDefaultWeather(data) {
     console.log(data)
-    const defaultPlace = data[0].name 
+    const defaultPlace = stateConverter(data[0].name)
     
 
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${defaultPlace}&units=metric&appid=1977debf2877a0be6ba449dd01ada2ce`
